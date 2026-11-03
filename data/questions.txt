@@ -1,0 +1,12 @@
+# Jedna otázka = jeden riadok. Riadky s # na začiatku sa ignorujú.
+# Otázky 1–9 sú zatiaľ len ZÁSTUPNÉ – vymyslíme ich spolu.
+[Otázka 1 – ľahká a vtipná, doplníme]
+[Otázka 2 – ľahká a vtipná, doplníme]
+[Otázka 3 – ľahká a vtipná, doplníme]
+[Otázka 4 – spoločný zážitok, doplníme]
+[Otázka 5 – interný vtip, doplníme]
+[Otázka 6 – spoločný zážitok, doplníme]
+[Otázka 7 – milá a emotívnejšia, doplníme]
+[Otázka 8 – milá a prekvapivá, doplníme]
+[Otázka 9 – milá a prekvapivá, doplníme]
+Kto by bol lepší HR ako Paťo? Nehovor tej osobe ale škaredo.

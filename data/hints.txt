@@ -1,0 +1,11 @@
+# Jeden riadok = nápoveda k otázke na rovnakom poradí. Zobrazí sa po 5 zlých pokusoch.
+[Nápoveda 1 – doplníme] (testovacia odpoveď: 1)
+[Nápoveda 2 – doplníme] (testovacia odpoveď: 2)
+[Nápoveda 3 – doplníme] (testovacia odpoveď: 3)
+[Nápoveda 4 – doplníme] (testovacia odpoveď: 4)
+[Nápoveda 5 – doplníme] (testovacia odpoveď: 5)
+[Nápoveda 6 – doplníme] (testovacia odpoveď: 6)
+[Nápoveda 7 – doplníme] (testovacia odpoveď: 7)
+[Nápoveda 8 – doplníme] (testovacia odpoveď: 8)
+[Nápoveda 9 – doplníme] (testovacia odpoveď: 9)
+Stačí sa pozrieť do zrkadla. 😉

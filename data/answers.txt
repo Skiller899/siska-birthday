@@ -1,0 +1,14 @@
+# Jeden riadok = správne odpovede k otázke na rovnakom poradí.
+# Viac povolených odpovedí oddeľ znakom |  (napr. Bratislava|BA|Blava)
+# Veľké/malé písmená, diakritika a medzery sa pri porovnaní ignorujú.
+# ZÁSTUPNÉ odpovede na testovanie: 1, 2, 3 … 9
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Siska
