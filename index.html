@@ -30,7 +30,6 @@
         </h1>
         <p class="show__sub">Veľký narodeninový kvíz</p>
       </div>
-      <div id="introGrid" hidden></div>
       <p class="lead">Ahoj, Siska! Čaká ťa 10 otázok. Každá správna odpoveď ťa posunie bližšie k prekvapeniu.</p>
       <button id="startBtn" class="btn btn--primary" type="button" disabled>Načítavam…</button>
       <p id="loadError" class="error" hidden></p>
@@ -38,8 +37,42 @@
 
     <!-- KVÍZ -->
     <section id="screen-quiz" class="screen" aria-labelledby="qText">
-      <div class="locker" aria-hidden="true">
-        <div class="locker__grid" id="quizGrid"></div>
+      <div class="gift" id="gift" aria-hidden="true">
+        <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
+              <rect width="16" height="16" fill="#FF5FA2"/>
+              <circle cx="4" cy="4" r="2.2" fill="#FFD6E8"/>
+              <circle cx="12" cy="12" r="2.2" fill="#FFD6E8"/>
+            </pattern>
+            <radialGradient id="glow">
+              <stop offset="0" stop-color="#FFF6D6"/>
+              <stop offset=".5" stop-color="#FFC94D" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#FFC94D" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="120" cy="206" rx="92" ry="9" fill="#000" opacity=".3"/>
+          <ellipse class="gift__glow" cx="120" cy="88" rx="95" ry="70" fill="url(#glow)"/>
+          <rect x="40" y="96" width="160" height="104" rx="4" fill="#FFC94D"/>
+          <rect x="40" y="96" width="160" height="8" fill="#C98A12"/>
+          <text x="120" y="172" text-anchor="middle" font-size="52" font-weight="800" fill="#6B4A00" opacity=".35">?</text>
+          <polygon class="piece" data-step="9" style="--off: translate(-70px, 60px) rotate(-40deg)" points="40,158 124,150 140,175 132,200 40,200" fill="url(#dots)"/>
+          <polygon class="piece" data-step="8" style="--off: translate(80px, 30px) rotate(35deg)" points="120,100 200,100 200,200 132,200 140,175 124,150 112,130" fill="url(#dots)"/>
+          <polygon class="piece" data-step="7" style="--off: translate(-80px, -30px) rotate(-35deg)" points="40,100 120,100 112,130 124,150 40,158" fill="url(#dots)"/>
+          <rect class="piece" data-step="5" style="--off: translate(-190px, 0)" x="40" y="140" width="160" height="16" fill="#FFF3D6"/>
+          <g class="piece gift__lid" data-step="10" style="--off: translate(40px, -150px) rotate(28deg)">
+            <rect x="30" y="72" width="180" height="30" rx="4" fill="#FFC94D"/>
+            <rect class="piece" data-step="6" style="--off: translate(0, -90px) rotate(-12deg)" x="30" y="72" width="180" height="30" rx="4" fill="url(#dots)"/>
+          </g>
+          <rect class="piece" data-step="4" style="--off: translate(0, 200px)" x="110" y="72" width="20" height="128" fill="#FFF3D6"/>
+          <g class="piece" data-step="3" style="--off: translate(0, -110px) scale(.4)">
+            <polygon points="116,72 100,100 110,98 118,80" fill="#FFF3D6"/>
+            <polygon points="124,72 140,100 130,98 122,80" fill="#FFF3D6"/>
+            <circle cx="120" cy="68" r="10" fill="#FFFFFF" stroke="#FFC0DA" stroke-width="2"/>
+          </g>
+          <g class="piece" data-step="2" style="--off: translate(90px, -90px) rotate(80deg)"><ellipse cx="142" cy="58" rx="24" ry="12" transform="rotate(25 142 58)" fill="#FFFFFF" stroke="#FFC0DA" stroke-width="3"/></g>
+          <g class="piece" data-step="1" style="--off: translate(-90px, -90px) rotate(-80deg)"><ellipse cx="98" cy="58" rx="24" ry="12" transform="rotate(-25 98 58)" fill="#FFFFFF" stroke="#FFC0DA" stroke-width="3"/></g>
+        </svg>
       </div>
 
       <div class="card" id="qCard">
