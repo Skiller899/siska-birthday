@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1B1838">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pre Sisku 🎁</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <button id="musicToggle" class="music-toggle" type="button" aria-label="Vypnúť hudbu" hidden>
+    <span class="music-on">♪</span><span class="music-off">✕</span>
+  </button>
+
+  <main class="app">
+
+    <!-- ÚVOD -->
+    <section id="screen-intro" class="screen is-active" aria-labelledby="introTitle">
+      <div class="locker locker--intro" aria-hidden="true">
+        <div class="locker__brand">BRAINIT BOX</div>
+        <div class="locker__grid" id="introGrid"></div>
+      </div>
+      <h1 id="introTitle" class="title">Ahoj, Siska.</h1>
+      <p class="lead">Pred tebou je 10 zamknutých priehradiek. Každá správna odpoveď jednu otvorí. Na konci ťa čaká niečo navyše.</p>
+      <button id="startBtn" class="btn btn--primary" type="button" disabled>Načítavam…</button>
+      <p id="loadError" class="error" hidden></p>
+    </section>
+
+    <!-- KVÍZ -->
+    <section id="screen-quiz" class="screen" aria-labelledby="qText">
+      <div class="locker" aria-hidden="true">
+        <div class="locker__brand">BRAINIT BOX</div>
+        <div class="locker__grid" id="quizGrid"></div>
+      </div>
+
+      <div class="card" id="qCard">
+        <p class="card__step" id="qStep">Priehradka 1 z 10</p>
+        <h2 class="card__question" id="qText"></h2>
+
+        <form id="answerForm" class="answer" autocomplete="off" novalidate>
+          <label for="answerInput" class="sr-only">Tvoja odpoveď</label>
+          <input id="answerInput" class="answer__input" type="text" placeholder="Tvoja odpoveď" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done">
+          <button class="btn btn--primary answer__btn" type="submit">Odomknúť</button>
+        </form>
+
+        <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+        <p id="attempts" class="attempts" aria-hidden="true"></p>
+
+        <div id="hint" class="hint" hidden>
+          <span class="hint__icon" aria-hidden="true">💡</span>
+          <p><strong>Nápoveda:</strong> <span id="hintText"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINÁLE 1 -->
+    <section id="screen-final1" class="screen screen--final" aria-labelledby="f1Title">
+      <div class="burst" aria-hidden="true">🎉</div>
+      <h1 id="f1Title" class="mega">Všetko najlepšie, Siska!</h1>
+      <p class="lead">Úspešne si zvládla všetkých 10 otázok!</p>
+      <button id="toFinal2" class="btn btn--primary" type="button">Pokračovať</button>
+    </section>
+
+    <!-- FINÁLE 2 -->
+    <section id="screen-final2" class="screen screen--final" aria-labelledby="f2Title">
+      <div class="burst burst--wink" aria-hidden="true">😏</div>
+      <h1 id="f2Title" class="title">Ak si myslíš, že toto je odo mňa všetko, tak sa veľmi mýliš!</h1>
+      <p class="lead">Tvoj skutočný darček ťa ešte len čaká.</p>
+      <button id="toFinal3" class="btn btn--primary btn--glow" type="button">Odhaliť darček</button>
+    </section>
+
+    <!-- FINÁLE 3 -->
+    <section id="screen-final3" class="screen screen--final" aria-labelledby="f3Title">
+      <h1 id="f3Title" class="mega mega--box">Tvoj BRAINIT BOX!</h1>
+      <p class="lead">Áno, čítaš správne! Tvoj skutočný darček na teba čaká v BRAINIT boxe. Teraz už len nájsť ten správny!</p>
+      <figure class="photo">
+        <div class="photo__frame">
+          <img id="boxImg" src="assets/brainit-box.jpg" alt="Fotografia BRAINIT boxu s označenou priehradkou">
+          <span id="boxMarker" class="photo__marker" hidden></span>
+          <div id="boxFallback" class="photo__fallback" hidden><span class="photo__fallback-icon">📦</span>Sem príde fotka BRAINIT boxu</div>
+        </div>
+      </figure>
+      <p class="outro">Veľa šťastia pri hľadaní! ❤️</p>
+    </section>
+
+  </main>
+
+  <audio id="quizMusic" src="assets/quiz-music.mp3" preload="auto" loop></audio>
+  <audio id="celebrationSound" src="assets/celebration.mp3" preload="auto"></audio>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
