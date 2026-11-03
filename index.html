@@ -23,12 +23,15 @@
 
     <!-- ÚVOD -->
     <section id="screen-intro" class="screen is-active" aria-labelledby="introTitle">
-      <div class="locker locker--intro" aria-hidden="true">
-        <div class="locker__brand">BRAINIT BOX</div>
-        <div class="locker__grid" id="introGrid"></div>
+      <div class="show">
+        <h1 id="introTitle" class="show__title">
+          <span class="show__top">Milujem</span>
+          <span class="show__main">Sisku<span class="show__heart" aria-hidden="true">♥</span></span>
+        </h1>
+        <p class="show__sub">Veľký narodeninový kvíz</p>
       </div>
-      <h1 id="introTitle" class="title">Ahoj, Siska.</h1>
-      <p class="lead">Pred tebou je 10 zamknutých priehradiek. Každá správna odpoveď jednu otvorí. Na konci ťa čaká niečo navyše.</p>
+      <div id="introGrid" hidden></div>
+      <p class="lead">Ahoj, Siska! Čaká ťa 10 otázok. Každá správna odpoveď ťa posunie bližšie k prekvapeniu.</p>
       <button id="startBtn" class="btn btn--primary" type="button" disabled>Načítavam…</button>
       <p id="loadError" class="error" hidden></p>
     </section>
@@ -36,12 +39,11 @@
     <!-- KVÍZ -->
     <section id="screen-quiz" class="screen" aria-labelledby="qText">
       <div class="locker" aria-hidden="true">
-        <div class="locker__brand">BRAINIT BOX</div>
         <div class="locker__grid" id="quizGrid"></div>
       </div>
 
       <div class="card" id="qCard">
-        <p class="card__step" id="qStep">Priehradka 1 z 10</p>
+        <p class="card__step" id="qStep">Otázka 1 z 10</p>
         <h2 class="card__question" id="qText"></h2>
 
         <form id="answerForm" class="answer" autocomplete="off" novalidate>
