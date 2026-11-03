@@ -84,7 +84,7 @@
   /* ---------- KVÍZ ---------- */
   function renderQuestion(animate) {
     const item = quiz[current];
-    $("qStep").textContent = "Priehradka " + (current + 1) + " z " + quiz.length;
+    $("qStep").textContent = "Otázka " + (current + 1) + " z " + quiz.length;
     $("qText").textContent = item.q;
     $("feedback").textContent = "";
     $("feedback").className = "feedback";
@@ -152,7 +152,7 @@
     // Správne
     busy = true;
     form.className = "answer is-right";
-    fb.textContent = current === quiz.length - 1 ? "Áno! Posledný zámok povolil…" : "Správne! Priehradka sa otvára…";
+    fb.textContent = current === quiz.length - 1 ? "Áno! Posledný zámok povolil…" : "Správne! Ideme ďalej…";
     fb.className = "feedback is-right";
     input.blur();
 
