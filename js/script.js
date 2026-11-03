@@ -227,9 +227,10 @@
     }
   };
 
-  // Fanfáry: najprv assets/celebration.mp3, ak chýba, zahrá sa syntetizovaná fanfára
+  // Finále: zahrá The Birthday Song.mp3, ak chýba, zahrá sa syntetizovaná fanfára
   function fanfare() {
     const el = $("celebrationSound");
+    if (!el.paused && !el.ended) return; // pesnička už hrá – nespúšťaj znova
     el.currentTime = 0;
     el.volume = 0.8;
     const p = el.play();
@@ -390,9 +391,15 @@
 
     startBtn.addEventListener("click", () => {
       getCtx() && audioCtx.state === "suspended" && audioCtx.resume();
+      // odomknutie zvuku pre mobily (hlavne iPhone), aby pesnička vo finále zahrala
+      const song = $("celebrationSound");
+      if (song.paused) {
+        song.muted = true;
+        const u = song.play();
+        if (u) u.then(() => { song.pause(); song.currentTime = 0; song.muted = false; }).catch(() => { song.muted = false; });
+      }
       if (current >= quiz.length) { startFinale(); return; }
       show("screen-quiz");
-      music.play();
       renderQuestion(false);
       setTimeout(() => $("answerInput").focus({ preventScroll: true }), 400);
     });
