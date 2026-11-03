@@ -272,3 +272,22 @@ body {
   background: rgba(255,255,255,.08); border: 1px solid rgba(255,201,77,.4);
   color: #FFE6A8; font-weight: 600; font-size: 1rem;
 }
+
+/* ===== Darček, ktorý sa postupne rozbaľuje ===== */
+.gift { width: min(80vw, 320px); margin: -8px auto -10px; }
+.gift svg { display: block; width: 100%; height: auto; overflow: visible; }
+.gift .piece {
+  transform-box: fill-box; transform-origin: center;
+  transition: transform 1s cubic-bezier(.45,-0.35,.6,1), opacity .9s ease-in .15s;
+}
+.gift .piece.is-gone { transform: var(--off); opacity: 0; pointer-events: none; }
+.gift .gift__lid.is-gone { transition-duration: 1.2s, 1s; }
+.gift__glow { opacity: 0; transition: opacity 1.2s ease .4s; }
+.gift.is-open .gift__glow { opacity: 1; animation: glowPulse 2s ease-in-out 1.6s infinite; }
+@keyframes glowPulse { 50% { opacity: .65; } }
+.gift.no-anim .piece, .gift.no-anim .gift__glow { transition: none; }
+.gift.is-shake svg { animation: giftShake .5s ease-in-out; transform-origin: 50% 95%; }
+@keyframes giftShake {
+  20% { transform: rotate(-6deg); } 40% { transform: rotate(5deg); }
+  60% { transform: rotate(-3deg); } 80% { transform: rotate(2deg); }
+}
