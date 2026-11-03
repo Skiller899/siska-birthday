@@ -61,24 +61,22 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  /* ---------- SKRINKA ---------- */
-  function buildGrid(el, count) {
-    el.innerHTML = "";
-    for (let i = 0; i < count; i++) {
-      const cell = document.createElement("div");
-      cell.className = "cell" + (i === count - 1 ? " is-final" : "");
-      cell.innerHTML =
-        '<div class="cell__inside">' + (i === count - 1 ? "🎁" : "✨") + "</div>" +
-        '<div class="cell__door">' + (i + 1) + "</div>";
-      el.appendChild(cell);
-    }
+  /* ---------- DARČEK ---------- */
+  // Darček má 10 vrstiev (mašľa, stuhy, papier, veko). Každá správna odpoveď jednu odstráni.
+  function updateGift(animate) {
+    const g = $("gift");
+    const stage = quiz.length ? Math.round(current * 10 / quiz.length) : 0;
+    if (!animate) g.classList.add("no-anim");
+    g.querySelectorAll("[data-step]").forEach((p) => p.classList.toggle("is-gone", Number(p.dataset.step) <= stage));
+    g.classList.toggle("is-open", stage >= 10);
+    if (!animate) { void g.offsetWidth; requestAnimationFrame(() => g.classList.remove("no-anim")); }
   }
 
-  function updateGrid() {
-    $("quizGrid").querySelectorAll(".cell").forEach((cell, i) => {
-      cell.classList.toggle("is-open", i < current);
-      cell.classList.toggle("is-current", i === current);
-    });
+  function shakeGift() {
+    const g = $("gift");
+    g.classList.remove("is-shake");
+    void g.offsetWidth;
+    g.classList.add("is-shake");
   }
 
   /* ---------- KVÍZ ---------- */
@@ -93,7 +91,6 @@
     $("hintText").textContent = item.hint;
     $("hint").hidden = wrongCount < CONFIG.hintAfter;
     renderAttempts();
-    updateGrid();
 
     if (animate) {
       const card = $("qCard");
@@ -143,6 +140,7 @@
       fb.className = "feedback is-wrong";
       if (wrongCount === CONFIG.hintAfter) $("hint").hidden = false;
       renderAttempts();
+      shakeGift();
       store.save({ current, wrongCount });
       input.select();
       if (navigator.vibrate) navigator.vibrate(80);
@@ -156,14 +154,11 @@
     fb.className = "feedback is-right";
     input.blur();
 
-    const cell = $("quizGrid").querySelectorAll(".cell")[current];
-    cell.classList.remove("is-current");
-    cell.classList.add("is-open");
-    const r = cell.getBoundingClientRect();
-    confetti.burst((r.left + r.width / 2) / innerWidth, (r.top + r.height / 2) / innerHeight, 40);
-
     current++;
     wrongCount = 0;
+    updateGift(true);
+    const r = $("gift").getBoundingClientRect();
+    confetti.burst((r.left + r.width / 2) / innerWidth, (r.top + r.height * 0.35) / innerHeight, 40);
 
     setTimeout(() => {
       busy = false;
@@ -175,7 +170,7 @@
         renderQuestion(true);
         $("answerInput").focus({ preventScroll: true });
       }
-    }, 1300);
+    }, current >= quiz.length ? 2400 : 1300);
   }
 
   /* ---------- FINÁLE ---------- */
@@ -361,7 +356,6 @@
 
     music.init();
     setupBoxPhoto();
-    buildGrid($("introGrid"), 10);
 
     $("answerForm").addEventListener("submit", onSubmit);
     $("toFinal2").addEventListener("click", () => { show("screen-final2"); confetti.burst(.5, .3, 50); });
@@ -384,15 +378,12 @@
       return;
     }
 
-    buildGrid($("introGrid"), quiz.length);
-    buildGrid($("quizGrid"), quiz.length);
-
     const saved = store.load();
     if (saved && saved.current > 0 && saved.current <= quiz.length) {
       current = saved.current;
       wrongCount = saved.wrongCount || 0;
     }
-    $("introGrid").querySelectorAll(".cell").forEach((c, i) => c.classList.toggle("is-open", i < current));
+    updateGift(false);
 
     startBtn.disabled = false;
     startBtn.textContent = current >= quiz.length ? "Znova k darčeku" : current > 0 ? "Pokračovať" : "Začať";
